@@ -11,9 +11,9 @@ language: haskell
 
 ghc:
   - 7.8.3
-  - 7.6.3
-  - 7.4.2
-  - 7.0.4
+  # - 7.6.3
+  # - 7.4.2
+  # - 7.0.4
 
 install:
   # Apparently travis doesn't have "time".
@@ -28,10 +28,10 @@ install:
   # New new alex for us
   - cabal install alex
   # And epic
-  - sudo apt-get install libgc-dev
-  - cabal install epic
+  # - sudo apt-get install libgc-dev
+  # - cabal install epic
   # Get the std-lib
-  - make std-lib
+  # - make std-lib
   # GO GO GO
   - cabal install --only-dependencies -j
   - make install-fix-agda-whitespace
@@ -43,7 +43,8 @@ script:
   # Right now haddock doesn't work, presumably because it consumes too
   # much memory.
   # - cabal haddock
-  - yes q | make check-whitespace succeed fail interaction examples library-test lib-succeed compiler-test epic-test api-test tests
+  # - yes q | make check-whitespace succeed fail interaction examples library-test lib-succeed compiler-test epic-test api-test tests
+  - make succeed
   # Travis doesn't have latex, not sure if we should install it
   # - make latex-test
 
@@ -57,4 +58,4 @@ matrix:
 # also add your private branches if you want travis to test them.
 branches:
   only:
-    - master
+    - issue-1351
